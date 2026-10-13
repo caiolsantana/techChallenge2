@@ -51,5 +51,5 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
   Demo validada via `python -m src.ga_vrp.ga`: fitness melhora ao longo das gerações, 0 pontos não
   roteados, capacidade/autonomia respeitadas (checado com `validators.py`), pontos `CRITICAL`
   priorizados no início das rotas. `base_code/` continua intocado. Detalhes de arquitetura e como
-  plugar a Fase 2 estão no [README.md](README.md#5-arquitetura-do-núcleo-vrp-ga-src_ga_vrp---fase-1-concluída-por-caiolsantana).
+  plugar a Fase 2 estão em [docs/fase1-nucleo-vrp-ga.md](docs/fase1-nucleo-vrp-ga.md).
 - 2026-10-13 — @caiolsantana — Setup do repositório, scaffolding do projeto e tracker de progresso criados.
