@@ -41,8 +41,7 @@ RESOLVIDO (divisão por blocos de fases, não por tipo de trabalho):
   técnico), roteiro e gravação do vídeo de demonstração, revisão cruzada e entrega final.
 - Todos os três participam do relatório técnico (cada um escreve a seção da sua frente) e aparecem no
   vídeo explicando sua parte.
-- Acompanhamento do progresso: ver [PROGRESS.md](PROGRESS.md) e as Issues do repositório (uma por
-  bloco de fases).
+- Acompanhamento do progresso: ver [PROGRESS.md](PROGRESS.md).
 
 ## Fases e cronograma (25 dias, 09/10/2026 → 03/11/2026)
 
@@ -54,7 +53,6 @@ RESOLVIDO (divisão por blocos de fases, não por tipo de trabalho):
    `draw_functions.py`) como ponto de partida; manter Pygame só para demo opcional ao vivo, e migrar
    a visualização "oficial" do relatório para Folium/Matplotlib (mapas e gráficos estáticos são mais
    adequados ao relatório/vídeo do que uma janela Pygame).
-3. Quadro de tarefas (GitHub Projects/Trello) com as fases abaixo quebradas em issues.
 
 ### Fase 1 — Núcleo VRP-GA (dias 3-8, até 17/10) — depende da Fase 0
 4. Modelar o domínio: `DeliveryPoint` (id, coordenadas, prioridade, demanda), `Vehicle` (capacidade,

@@ -1,8 +1,7 @@
 # Progresso — Tech Challenge Fase 2
 
 > Atualize este arquivo (marcar `[x]`, mudar status, adicionar nota) sempre que concluir uma tarefa
-> e suba num commit/PR. Plano completo em [PLANO.md](PLANO.md). Issues de acompanhamento: uma por
-> bloco de fases no repositório.
+> e suba num commit/PR. Plano completo em [PLANO.md](PLANO.md).
 
 Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 
@@ -12,7 +11,6 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 |---|---|
 | Concluído | Fase 0.1 — Estrutura do projeto (venv, requirements.txt, pastas `src/`) |
 | Concluído | Fase 0.2 — Importar código base da FIAP para `base_code/` |
-| A fazer | Fase 0.3 — Quadro de tarefas (issues já criadas; Project board opcional) |
 | A fazer | Fase 1.4 — Modelar domínio (`DeliveryPoint`, `Vehicle`, `Depot`) |
 | A fazer | Fase 1.5 — Representação genética de rotas por veículo |
 | A fazer | Fase 1.6 — Operadores especializados (seleção, crossover, mutação) |
