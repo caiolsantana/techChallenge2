@@ -11,11 +11,11 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 |---|---|
 | Concluído | Fase 0.1 — Estrutura do projeto (venv, requirements.txt, pastas `src/`) |
 | Concluído | Fase 0.2 — Importar código base da FIAP para `base_code/` |
-| A fazer | Fase 1.4 — Modelar domínio (`DeliveryPoint`, `Vehicle`, `Depot`) |
-| A fazer | Fase 1.5 — Representação genética de rotas por veículo |
-| A fazer | Fase 1.6 — Operadores especializados (seleção, crossover, mutação) |
-| A fazer | Fase 1.7 — Função fitness multi-critério |
-| A fazer | Fase 1.8 — Validador de restrições (capacidade, autonomia, prioridade) |
+| Concluído | Fase 1.4 — Modelar domínio (`DeliveryPoint`, `Vehicle`, `Depot`) — ver `src/ga_vrp/models.py` |
+| Concluído | Fase 1.5 — Representação genética de rotas por veículo — giant tour + `split.py` (ver README §5) |
+| Concluído | Fase 1.6 — Operadores especializados (seleção, crossover, mutação) — `src/ga_vrp/operators.py` |
+| Concluído | Fase 1.7 — Função fitness multi-critério — `src/ga_vrp/fitness.py` |
+| Concluído | Fase 1.8 — Validador de restrições (capacidade, autonomia, prioridade) — `src/ga_vrp/validators.py` |
 | A fazer | Fase 2.9 — Gerador de dados sintéticos (cenário estilo São Paulo) |
 
 ## Bloco 2 — @andersonmares (Fases 3, 4 e 5)
@@ -46,4 +46,10 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 ## Log de atualizações
 
 <!-- Adicione uma linha por atualização relevante, mais recente no topo. -->
+- 2026-10-13 — @caiolsantana — Fase 1 concluída: núcleo VRP-GA implementado em `src/ga_vrp/`
+  (`models.py`, `geo.py`, `operators.py`, `split.py`, `fitness.py`, `validators.py`, `ga.py`).
+  Demo validada via `python -m src.ga_vrp.ga`: fitness melhora ao longo das gerações, 0 pontos não
+  roteados, capacidade/autonomia respeitadas (checado com `validators.py`), pontos `CRITICAL`
+  priorizados no início das rotas. `base_code/` continua intocado. Detalhes de arquitetura e como
+  plugar a Fase 2 estão no [README.md](README.md#5-arquitetura-do-núcleo-vrp-ga-src_ga_vrp---fase-1-concluída-por-caiolsantana).
 - 2026-10-13 — @caiolsantana — Setup do repositório, scaffolding do projeto e tracker de progresso criados.
