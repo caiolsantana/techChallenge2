@@ -29,18 +29,20 @@ Folium + Matplotlib para visualização, Groq API para a camada de LLM (fallback
 para testes.
 
 ## Divisão de papéis
-- **Pessoa A — Algoritmo Genético / VRP Core:** representação genética de rotas, operadores
-  (seleção, crossover, mutação) especializados para VRP, função fitness multi-critério (distância +
-  prioridade + penalidades de capacidade/autonomia), os 3+ experimentos comparativos.
-- **Pessoa B — Dados, Visualização & LLM:** gerador de dados sintéticos (unidades hospitalares,
-  pontos de entrega, prioridades, demandas, frota de veículos), visualização de rotas em mapa
-  (Folium/Plotly) e gráficos de convergência, integração com LLM (prompts para instruções/relatórios
-  e Q&A sobre rotas).
-- **Pessoa C — Qualidade, Documentação & Entrega:** testes automatizados (pytest) para operadores do
-  GA e validação de restrições, estrutura do projeto (Poetry, CI básico), README + diagramas de
-  arquitetura, relatório técnico, roteiro e edição do vídeo de demonstração, coordenação do backlog.
+
+RESOLVIDO (divisão por blocos de fases, não por tipo de trabalho):
+- **@caiolsantana — Fases 0, 1 e 2:** setup do projeto, núcleo VRP-GA (modelo de domínio,
+  representação genética, operadores, fitness multi-critério, validador de restrições) e gerador de
+  dados sintéticos.
+- **@andersonmares — Fases 3, 4 e 5:** visualização (gráfico de convergência + mapa interativo),
+  integração com LLM (Groq/Ollama, prompts, avaliação de qualidade) e experimentos/testes
+  automatizados.
+- **@gabrielle19 — Fases 6, 7 e 8:** documentação (README, diagrama de arquitetura, relatório
+  técnico), roteiro e gravação do vídeo de demonstração, revisão cruzada e entrega final.
 - Todos os três participam do relatório técnico (cada um escreve a seção da sua frente) e aparecem no
   vídeo explicando sua parte.
+- Acompanhamento do progresso: ver [PROGRESS.md](PROGRESS.md) e as Issues do repositório (uma por
+  bloco de fases).
 
 ## Fases e cronograma (25 dias, 09/10/2026 → 03/11/2026)
 
