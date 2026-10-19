@@ -4,11 +4,13 @@ Same skeleton as base_code/tsp.py's main loop (elitism + roulette-wheel selectio
 crossover + mutation), but operating on `DeliveryPoint` tours and using `fitness.evaluate()`
 (distance + priority + infeasibility penalty) instead of plain TSP distance.
 
-Usage once Fase 2 (data generator) exists:
-    result = run_ga(delivery_points, vehicles, depot, GAConfig())
+Fase 2's synthetic data generator (`src.data.scenario`) now provides real input, e.g.:
+    from src.data.scenario import generate_scenario
+    scenario = generate_scenario()
+    result = run_ga(scenario.delivery_points, scenario.vehicles, scenario.depot, GAConfig())
 
-Until then, `python -m src.ga_vrp.ga` runs a small hardcoded demo scenario so the next
-person (Fase 2/3) can see the expected input/output shapes without waiting on real data.
+`python -m src.ga_vrp.ga` still runs the small hardcoded demo below (8 points, 2 vehicles) —
+kept as a fast, dependency-free smoke test of the GA loop itself.
 """
 
 from __future__ import annotations

@@ -1,0 +1,25 @@
+# Default synthetic scenario config (Fase 2) — São Paulo-scale VRP.
+# Used by `python -m src.data.scenario` when no --config is given.
+# Copy this file to create alternative configs for the Fase 5 experiments
+# (e.g. more points, tighter vehicle capacity, different critical_ratio).
+
+seed: 42
+n_points: 30
+critical_ratio: 0.3
+
+demand_min: 1.0
+demand_max: 5.0
+
+n_vehicles: 4
+# capacity/range are left unset on purpose: scenario.py auto-sizes them from n_points,
+# n_vehicles and demand so the fleet stays feasible. Set vehicle_capacity_min/max and
+# vehicle_range_min/max explicitly here to force a specific fleet for an experiment.
+
+bbox:
+  lat_min: -23.68
+  lat_max: -23.40
+  lon_min: -46.75
+  lon_max: -46.40
+
+depot_lat: -23.5505
+depot_lon: -46.6333

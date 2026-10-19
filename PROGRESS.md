@@ -16,7 +16,7 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 | Concluído | Fase 1.6 — Operadores especializados (seleção, crossover, mutação) — `src/ga_vrp/operators.py` |
 | Concluído | Fase 1.7 — Função fitness multi-critério — `src/ga_vrp/fitness.py` |
 | Concluído | Fase 1.8 — Validador de restrições (capacidade, autonomia, prioridade) — `src/ga_vrp/validators.py` |
-| A fazer | Fase 2.9 — Gerador de dados sintéticos (cenário estilo São Paulo) |
+| Concluído | Fase 2.9 — Gerador de dados sintéticos (cenário estilo São Paulo) — ver `src/data/scenario.py` |
 
 ## Bloco 2 — @andersonmares (Fases 3, 4 e 5)
 
@@ -46,6 +46,16 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 ## Log de atualizações
 
 <!-- Adicione uma linha por atualização relevante, mais recente no topo. -->
+- 2026-10-19 — @caiolsantana — Fase 2 concluída: gerador de dados sintéticos em `src/data/scenario.py`
+  (`ScenarioConfig`, `generate_scenario`, `load_config`/`save_scenario`/`load_scenario`, CLI via
+  `python -m src.data.scenario`). Cenário no formato/escala de São Paulo (bounding box de lat/lon,
+  depósito na Praça da Sé), com prioridades, demandas e frota geradas aleatoriamente; capacidade e
+  autonomia dos veículos são auto-dimensionadas a partir de `n_points`/`n_vehicles`/demanda para o
+  cenário permanecer viável em qualquer tamanho (validado rodando `run_ga()` com várias sementes e
+  tamanhos: 0 pontos não roteados). Config padrão em `data/config/scenario_default.yaml` e cenário de
+  exemplo commitado em `data/scenarios/sp_default.json`. Nenhum módulo da Fase 1 precisou mudar —
+  `generate_scenario()` produz exatamente os tipos que `run_ga()` já esperava. Detalhes em
+  [docs/fase2-dados-sinteticos.md](docs/fase2-dados-sinteticos.md).
 - 2026-10-13 — @caiolsantana — Fase 1 concluída: núcleo VRP-GA implementado em `src/ga_vrp/`
   (`models.py`, `geo.py`, `operators.py`, `split.py`, `fitness.py`, `validators.py`, `ga.py`).
   Demo validada via `python -m src.ga_vrp.ga`: fitness melhora ao longo das gerações, 0 pontos não
