@@ -24,7 +24,7 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 |---|---|
 | Concluído | Fase 3.10 — Gráfico de convergência do GA (Matplotlib) |
 | Concluído | Fase 3.11 — Mapa interativo das rotas (Folium) |
-| Concluído | Fase 4.12 — Provedor LLM (Groq + fallback Ollama); falta validar chamada real com credencial/servidor |
+| Concluído | Fase 4.12 — Provedor Groq + fallback Ollama; chamada real com Ollama validada |
 | Concluído | Fase 4.13 — Prompts para instruções, relatórios e Q&A |
 | Concluído | Fase 4.14 — Três respostas reais do Ollama avaliadas e comparadas com a solução do GA |
 | Concluído | Fase 5.15 — 3 configurações × 3 sementes, resultados em `results/experiments.*` |
