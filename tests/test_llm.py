@@ -4,7 +4,7 @@ import unittest
 
 from src.ga_vrp.models import DeliveryPoint, Priority, Route, Solution, Vehicle
 from src.llm.evaluation import collect_responses
-from src.llm.prompts import build_messages
+from src.llm.prompts import build_messages, solution_context
 from src.llm.providers import FallbackProvider
 
 
@@ -33,6 +33,17 @@ class LLMTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_messages("ask", self.solution)
 
+    def test_report_uses_precomputed_counts(self) -> None:
+        context = solution_context(self.solution, detail="summary")
+        self.assertIn('"total_stops": 1', context)
+        self.assertIn('"stop_count": 1', context)
+        self.assertNotIn('"stops":', context)
+
+    def test_critical_question_uses_only_critical_index(self) -> None:
+        messages = build_messages("ask", self.solution, "Quais entregas são críticas?")
+        self.assertIn('"critical_stops"', messages[1]["content"])
+        self.assertNotIn('"routes"', messages[1]["content"])
+
     def test_provider_falls_back(self) -> None:
         self.assertEqual(FallbackProvider(_FailingProvider(), _WorkingProvider()).complete([]), "fallback response")
 
@@ -41,3 +52,5 @@ class LLMTests(unittest.TestCase):
         self.assertEqual([case["task"] for case in record["cases"]], ["instructions", "report", "ask"])
         self.assertTrue(all(case["response"] == "fallback response" for case in record["cases"]))
         self.assertTrue(all(case["ratings"]["factual_accuracy"] is None for case in record["cases"]))
+        self.assertEqual(record["reference"]["total_stops"], 1)
+        self.assertEqual(record["reference"]["critical_stops"][0]["id"], "dp1")

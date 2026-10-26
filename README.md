@@ -89,14 +89,14 @@ python -m src.experiments
 # Testes
 python -m pytest -q
 
-# Coletar respostas reais da LLM para avaliação manual
+# Coletar novas respostas reais da LLM para revisão
 python -m src.llm.evaluate
 ```
 
 Para a LLM, o modo `auto` usa Groq quando `GROQ_API_KEY` está definida e tenta Ollama se
 a chamada falhar. Sem chave, usa Ollama local. Se necessário, escolha explicitamente
 `--provider groq` ou `--provider ollama`. Para Ollama, inicie o servidor local e baixe o modelo
-indicado em `OLLAMA_MODEL`. A avaliação manual e seus critérios estão em
+indicado em `OLLAMA_MODEL`. A avaliação realizada com o Llama 3.1 e seus critérios estão em
 [docs/fase4-avaliacao-llm.md](docs/fase4-avaliacao-llm.md).
 
 As visualizações são gravadas em `results/figures/` e os experimentos em
@@ -110,5 +110,6 @@ final): ver [docs/](docs/).
 ## 5. Status
 
 Projeto em desenvolvimento — ver [PLANO.md](PLANO.md) para o cronograma e [PROGRESS.md](PROGRESS.md)
-para o progresso atualizado por bloco de fases. A integração LLM e os prompts estão implementados;
-a avaliação de respostas reais requer uma chave Groq ou um servidor Ollama configurado.
+para o progresso atualizado por bloco de fases. A integração LLM e os prompts foram validados
+com o modelo local `llama3.1:latest` em um cenário reproduzível; as notas das duas rodadas estão
+em `results/llm-evaluation-initial.json` e `results/llm-evaluation.json`.

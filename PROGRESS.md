@@ -26,7 +26,7 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 | Concluído | Fase 3.11 — Mapa interativo das rotas (Folium) |
 | Concluído | Fase 4.12 — Provedor LLM (Groq + fallback Ollama); falta validar chamada real com credencial/servidor |
 | Concluído | Fase 4.13 — Prompts para instruções, relatórios e Q&A |
-| Em andamento | Fase 4.14 — Rubrica e coleta implementadas; avaliação de respostas reais depende de Groq/Ollama |
+| Concluído | Fase 4.14 — Três respostas reais do Ollama avaliadas e comparadas com a solução do GA |
 | Concluído | Fase 5.15 — 3 configurações × 3 sementes, resultados em `results/experiments.*` |
 | Concluído | Fase 5.16 — Baseline nearest-neighbor e comparação de distância/fitness |
 | Concluído | Fase 5.17 — Testes automatizados (pytest) |
@@ -46,6 +46,10 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 ## Log de atualizações
 
 <!-- Adicione uma linha por atualização relevante, mais recente no topo. -->
+- 2026-10-25 — @andersonmares — Llama 3.1 local (`llama3.1:latest`) usado para validar os três
+  casos da Fase 4. A primeira rodada revelou erros no relatório e no Q&A; prompts revisados
+  e segunda rodada conferida com os 30 pontos e nove críticos da solução do GA. Registros,
+  notas e limitações em [docs/fase4-avaliacao-llm.md](docs/fase4-avaliacao-llm.md).
 - 2026-10-25 — @andersonmares — Fases 3 e 5 implementadas: visualizações em `src/visualization/`,
   nove execuções reproduzíveis e baseline em `src/experiments/`, testes em `tests/`. Fase 4:
   provedores e prompts implementados, com protocolo de avaliação documentado; execução de

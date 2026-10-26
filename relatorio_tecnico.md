@@ -22,8 +22,14 @@ sem rota. O prompt de sistema proíbe inferir endereços, tempos de viagem, quil
 economia sem dados correspondentes. A Groq API é o provedor principal quando há
 `GROQ_API_KEY`; o Ollama local funciona como alternativa e fallback. A rubrica de avaliação
 considera correção factual, clareza e utilidade (0 a 2 em cada dimensão), conforme
-[`docs/fase4-avaliacao-llm.md`](docs/fase4-avaliacao-llm.md). A avaliação com respostas reais
-depende de configurar um dos provedores; ainda não há resultados de qualidade a reportar.
+[`docs/fase4-avaliacao-llm.md`](docs/fase4-avaliacao-llm.md). A avaliação com `llama3.1:latest`
+local, cenário padrão e semente 42, teve duas rodadas. Na primeira, o relatório atribuiu
+incorretamente 10 paradas a cada veículo (o correto é 10, 13 e 7), e o Q&A confundiu pontos
+críticos com regulares. Após fornecer ao modelo contagens e uma lista de críticos calculadas
+diretamente da solução, a segunda rodada acertou os 30 IDs na ordem, as métricas do relatório
+e os nove pontos críticos com seus veículos e posições. A revisão técnica atribuiu 18/18 pontos
+na rubrica à segunda rodada, contra 9/18 na primeira. Essa avaliação cobre um cenário e um
+modelo local; não demonstra confiabilidade geral ou segurança para uso operacional.
 
 ## 4. Comparativo de desempenho com outras abordagens de roteamento
 
