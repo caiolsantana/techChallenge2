@@ -17,8 +17,6 @@ import random
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-import yaml
-
 from ..ga_vrp.models import Depot, DeliveryPoint, Priority, Vehicle
 
 # Rough bounding box for the São Paulo metropolitan area.
@@ -66,7 +64,12 @@ class GeneratedScenario:
 def load_config(path: str | Path) -> ScenarioConfig:
     path = Path(path)
     raw = path.read_text(encoding="utf-8")
-    data = json.loads(raw) if path.suffix == ".json" else yaml.safe_load(raw)
+    if path.suffix == ".json":
+        data = json.loads(raw)
+    else:
+        import yaml
+
+        data = yaml.safe_load(raw)
     return ScenarioConfig.from_dict(data or {})
 
 

@@ -1,0 +1,132 @@
+{
+  "created_at_utc": "2026-10-26T01:58:16.163960+00:00",
+  "cases": [
+    {
+      "task": "instructions",
+      "question": null,
+      "response": "**Instruções de Entrega por Veículo**\n\n**Veículo 1 (v1)**\n\n1. **dp23** (Prioridade: Critical, Demanda: 3,51)\n\t* Lat: -23,666807414881074\n\t* Lon: -46,71162280437727\n2. **dp27** (Prioridade: Critical, Demanda: 2,74)\n\t* Lat: -23,500530696397654\n\t* Lon: -46,710956739241446\n3. **dp15** (Prioridade: Critical, Demanda: 2,52)\n\t* Lat: -23,475844496573902\n\t* Lon: -46,692809127183324\n4. **dp28** (Prioridade: Regular, Demanda: 2,05)\n\t* Lat: -23,412931540294096\n\t* Lon: -46,44345147086763\n5. **dp10** (Prioridade: Regular, Demanda: 3,31)\n\t* Lat: -23,50681446933801\n\t* Lon: -46,44840258489123\n6. **dp8** (Prioridade: Regular, Demanda: 3,92)\n\t* Lat: -23,51095671121727\n\t* Lon: -46,46750510435397\n7. **dp21** (Prioridade: Regular, Demanda: 4,59)\n\t* Lat: -23,606432349613577\n\t* Lon: -46,54539490342176\n8. **dp17** (Prioridade: Regular, Demanda: 1,13)\n\t* Lat: -23,46272002476705\n\t* Lon: -46,66983317481256\n9. **dp20** (Prioridade: Regular, Demanda: 1,99)\n\t* Lat: -23,55152148127553\n\t* Lon: -46,65729194172568\n10. **dp18** (Prioridade: Regular, Demanda: 4,77)\n\t* Lat: -23,6050325547268\n\t* Lon: -46,67615600474478\n\n**Veículo 2 (v2)**\n\n1. **dp26** (Prioridade: Critical, Demanda: 3,15)\n\t* Lat: -23,478197890579143\n\t* Lon: -46,511401370840694\n2. **dp30** (Prioridade: Critical, Demanda: 1,61)\n\t* Lat: -23,501094141437516\n\t* Lon: -46,536860425996636\n3. **dp14** (Prioridade: Critical, Demanda: 3,44)\n\t* Lat: -23,4177367154405\n\t* Lon: -46,52318761516369\n4. **dp5** (Prioridade: Critical, Demanda: 1,03)\n\t* Lat: -23,515005608514745\n\t* Lon: -46,46669934016276\n5. **dp29** (Prioridade: Regular, Demanda: 4,48)\n\t* Lat: -23,629977473451564\n\t* Lon: -46,43058025622931\n6. **dp22** (Prioridade: Regular, Demanda: 3,04)\n\t* Lat: -23,61859018743596\n\t* Lon: -46,40086183772671\n7. **dp16** (Prioridade: Regular, Demanda: 3,74)\n\t* Lat: -23,500800067240853\n\t* Lon: -46,55506758967887\n8. **dp6** (Prioridade: Regular, Demanda: 1,62)\n\t* Lat: -23,484520969403295\n\t* Lon: -46,6309123192187\n9. **dp13** (Prioridade: Regular, Demanda: 1,84)\n\t* Lat: -23,577846989888375\n\t* Lon: -46,62043666150909\n10. **dp1** (Prioridade: Regular, Demanda: 1,89)\n\t* Lat: -23,67299698853765\n\t* Lon: -46,653739738570806\n11. **dp11** (Prioridade: Regular, Demanda: 2,16)\n\t* Lat: -23,667169172576415\n\t* Lon: -46,67023560352196\n12. **dp7** (Prioridade: Regular, Demanda: 1,39)\n\t* Lat: -23,585753527368464\n\t* Lon: -46,717538954816945\n13. **dp24** (Prioridade: Regular, Demanda: 2,53)\n\t* Lat: -23,561795209296086\n\t* Lon: -46,72776530284681\n\n**Veículo 3 (v3)**\n\n1. **dp12** (Prioridade: Critical, Demanda: 2,11)\n\t* Lat: -23,61481855181891\n\t* Lon: -46,714649499706596\n2. **dp4** (Prioridade: Critical, Demanda: 3,18)\n\t* Lat: -23,62432545780774\n\t* Lon: -46,522540446777164\n3. **dp3** (Prioridade: Regular, Demanda: 3,02)\n\t* Lat: -23,67165677855734\n\t* Lon: -46,67347670881874\n4. **dp19** (Prioridade: Regular, Demanda: 2,58)\n\t* Lat: -23,591890193376425\n\t* Lon: -46,52059646714679\n5. **dp25** (Prioridade: Regular, Demanda: 4,44)\n\t* Lat: -23,53184798337224\n\t* Lon: -46,41012256783523\n6. **dp2** (Prioridade: Regular, Demanda: 1,35)\n\t* Lat: -23,490524143521583\n\t* Lon: -46,4377371513033\n7. **dp9** (Prioridade: Regular, Demanda: 3,21)\n\t* Lat: -23,407527586085774\n\t* Lon: -46,61751296797708\n\n**Pontos sem Rota**\n\nNenhum ponto sem rota foi identificado.\n\nEssas instruções indicam a ordem exata das paradas para cada veículo, destacando as entregas críticas e os pontos sem rota.",
+      "ratings": {
+        "factual_accuracy": 2,
+        "clarity": 2,
+        "usefulness": 2
+      },
+      "review_notes": "Os 30 IDs e sua ordem por veículo foram conferidos com o GA; demandas e prioridades conferem. Coordenadas são sintéticas, não orientações de trânsito."
+    },
+    {
+      "task": "report",
+      "question": null,
+      "response": "**Relatório Operacional**\n\n* **Roteiros:** 3\n* **Paradas Totais:** 30\n* **Carga Total:** 82,34\n* **Distância Total:** 3,61 unidades de coordenada\n* **Paradas por Veículo:**\n + Veículo 1: 10 paradas\n + Veículo 2: 13 paradas\n + Veículo 3: 7 paradas\n\n**Pontos não Roteados:** 0\n\nEssa análise não compara com um baseline, pois não foi fornecido.",
+      "ratings": {
+        "factual_accuracy": 2,
+        "clarity": 2,
+        "usefulness": 2
+      },
+      "review_notes": "Três rotas, 30 paradas (10/13/7), carga 82,34, distância 3,61 e zero pontos sem rota conferem com o GA."
+    },
+    {
+      "task": "ask",
+      "question": "Quais são as entregas críticas e em que ordem serão atendidas?",
+      "response": "As entregas críticas e a ordem em que serão atendidas são:\n\n1. dp23 - Veículo v1 - Ordem 1\n2. dp27 - Veículo v1 - Ordem 2\n3. dp15 - Veículo v1 - Ordem 3\n4. dp26 - Veículo v2 - Ordem 1\n5. dp30 - Veículo v2 - Ordem 2\n6. dp14 - Veículo v2 - Ordem 3\n7. dp5 - Veículo v2 - Ordem 4\n8. dp12 - Veículo v3 - Ordem 1\n9. dp4 - Veículo v3 - Ordem 2\n\nEssas são as entregas críticas e a ordem em que serão atendidas.",
+      "ratings": {
+        "factual_accuracy": 2,
+        "clarity": 2,
+        "usefulness": 2
+      },
+      "review_notes": "Os nove pontos críticos, seus veículos e a ordem em cada rota foram conferidos exatamente com o GA."
+    }
+  ],
+  "provider": "OllamaProvider",
+  "model": "llama3.1:latest",
+  "reference": {
+    "total_distance": 3.605366,
+    "total_load": 82.34,
+    "total_stops": 30,
+    "route_stop_ids": {
+      "v1": [
+        "dp23",
+        "dp27",
+        "dp15",
+        "dp28",
+        "dp10",
+        "dp8",
+        "dp21",
+        "dp17",
+        "dp20",
+        "dp18"
+      ],
+      "v2": [
+        "dp26",
+        "dp30",
+        "dp14",
+        "dp5",
+        "dp29",
+        "dp22",
+        "dp16",
+        "dp6",
+        "dp13",
+        "dp1",
+        "dp11",
+        "dp7",
+        "dp24"
+      ],
+      "v3": [
+        "dp12",
+        "dp4",
+        "dp3",
+        "dp19",
+        "dp25",
+        "dp2",
+        "dp9"
+      ]
+    },
+    "critical_stops": [
+      {
+        "vehicle_id": "v1",
+        "order": 1,
+        "id": "dp23"
+      },
+      {
+        "vehicle_id": "v1",
+        "order": 2,
+        "id": "dp27"
+      },
+      {
+        "vehicle_id": "v1",
+        "order": 3,
+        "id": "dp15"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 1,
+        "id": "dp26"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 2,
+        "id": "dp30"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 3,
+        "id": "dp14"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 4,
+        "id": "dp5"
+      },
+      {
+        "vehicle_id": "v3",
+        "order": 1,
+        "id": "dp12"
+      },
+      {
+        "vehicle_id": "v3",
+        "order": 2,
+        "id": "dp4"
+      }
+    ],
+    "unrouted_point_ids": []
+  },
+  "reviewer": "Codex: revisão técnica assistida por comparação de IDs, ordem e totais"
+}

@@ -65,10 +65,44 @@ source venv/bin/activate        # Linux/Mac
 # 3. Instalar as dependências
 pip install -r requirements.txt
 
-# 4. Configurar a chave da LLM
+# 4. Configurar a chave da LLM, se for usar Groq
 cp .env.example .env
 # edite .env e preencha GROQ_API_KEY (gratuita em https://console.groq.com/keys)
 ```
+
+### Fases 3 a 5
+
+Execute os comandos abaixo na raiz do repositório, com o ambiente Python ativado:
+
+```bash
+# Gráfico de convergência e mapa interativo
+python -m src.visualization
+
+# Instruções, relatório ou pergunta sobre as rotas
+python -m src.llm instructions
+python -m src.llm report
+python -m src.llm ask --question "Quais entregas são críticas?"
+
+# Três configurações do GA, cada uma com três sementes, e baseline guloso
+python -m src.experiments
+
+# Testes
+python -m pytest -q
+
+# Coletar novas respostas reais da LLM para revisão
+python -m src.llm.evaluate
+```
+
+Para a LLM, o modo `auto` usa Groq quando `GROQ_API_KEY` está definida e tenta Ollama se
+a chamada falhar. Sem chave, usa Ollama local. Se necessário, escolha explicitamente
+`--provider groq` ou `--provider ollama`. Para Ollama, inicie o servidor local e baixe o modelo
+indicado em `OLLAMA_MODEL`. A avaliação realizada com o Llama 3.1 e seus critérios estão em
+[docs/fase4-avaliacao-llm.md](docs/fase4-avaliacao-llm.md).
+
+As visualizações são gravadas em `results/figures/` e os experimentos em
+`results/experiments.json` e `results/experiments.csv`. As distâncias representam diferenças
+euclidianas entre coordenadas de latitude/longitude; **não são quilômetros nem distâncias reais
+de rua**. Veja a análise dos experimentos em [docs/fase5-experimentos.md](docs/fase5-experimentos.md).
 
 Notas de arquitetura de cada fase (artefatos de acompanhamento do grupo, não fazem parte da entrega
 final): ver [docs/](docs/).
@@ -76,4 +110,6 @@ final): ver [docs/](docs/).
 ## 5. Status
 
 Projeto em desenvolvimento — ver [PLANO.md](PLANO.md) para o cronograma e [PROGRESS.md](PROGRESS.md)
-para o progresso atualizado por bloco de fases.
+para o progresso atualizado por bloco de fases. A integração LLM e os prompts foram validados
+com o modelo local `llama3.1:latest` em um cenário reproduzível; as notas das duas rodadas estão
+em `results/llm-evaluation-initial.json` e `results/llm-evaluation.json`.
