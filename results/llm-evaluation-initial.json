@@ -1,0 +1,132 @@
+{
+  "created_at_utc": "2026-10-26T01:56:01.300050+00:00",
+  "cases": [
+    {
+      "task": "instructions",
+      "question": null,
+      "response": "Aqui estão as instruções de entrega por veículo, na ordem exata das paradas:\n\n**Veículo 1 (v1)**\n\n1. Parada 1: dp23 (demanda: 3.51, prioridade: crítica)\n2. Parada 2: dp27 (demanda: 2.74, prioridade: crítica)\n3. Parada 3: dp15 (demanda: 2.52, prioridade: crítica)\n4. Parada 4: dp28 (demanda: 2.05, prioridade: regular)\n5. Parada 5: dp10 (demanda: 3.31, prioridade: regular)\n6. Parada 6: dp8 (demanda: 3.92, prioridade: regular)\n7. Parada 7: dp21 (demanda: 4.59, prioridade: regular)\n8. Parada 8: dp17 (demanda: 1.13, prioridade: regular)\n9. Parada 9: dp20 (demanda: 1.99, prioridade: regular)\n10. Parada 10: dp18 (demanda: 4.77, prioridade: regular)\n\n**Veículo 2 (v2)**\n\n1. Parada 1: dp26 (demanda: 3.15, prioridade: crítica)\n2. Parada 2: dp30 (demanda: 1.61, prioridade: crítica)\n3. Parada 3: dp14 (demanda: 3.44, prioridade: crítica)\n4. Parada 4: dp5 (demanda: 1.03, prioridade: crítica)\n5. Parada 5: dp29 (demanda: 4.48, prioridade: regular)\n6. Parada 6: dp22 (demanda: 3.04, prioridade: regular)\n7. Parada 7: dp16 (demanda: 3.74, prioridade: regular)\n8. Parada 8: dp6 (demanda: 1.62, prioridade: regular)\n9. Parada 9: dp13 (demanda: 1.84, prioridade: regular)\n10. Parada 10: dp1 (demanda: 1.89, prioridade: regular)\n11. Parada 11: dp11 (demanda: 2.16, prioridade: regular)\n12. Parada 12: dp7 (demanda: 1.39, prioridade: regular)\n13. Parada 13: dp24 (demanda: 2.53, prioridade: regular)\n\n**Veículo 3 (v3)**\n\n1. Parada 1: dp12 (demanda: 2.11, prioridade: crítica)\n2. Parada 2: dp4 (demanda: 3.18, prioridade: crítica)\n3. Parada 3: dp3 (demanda: 3.02, prioridade: regular)\n4. Parada 4: dp19 (demanda: 2.58, prioridade: regular)\n5. Parada 5: dp25 (demanda: 4.44, prioridade: regular)\n6. Parada 6: dp2 (demanda: 1.35, prioridade: regular)\n7. Parada 7: dp9 (demanda: 3.21, prioridade: regular)\n\n**Pontos sem rota**\n\nNenhum ponto sem rota foi encontrado no conjunto de dados.\n\nAs entregas críticas estão destacadas em negrito.",
+      "ratings": {
+        "factual_accuracy": 2,
+        "clarity": 1,
+        "usefulness": 2
+      },
+      "review_notes": "IDs, ordem, demanda e prioridade conferem. A resposta diz que destacou os críticos em negrito, mas não aplicou esse destaque."
+    },
+    {
+      "task": "report",
+      "question": null,
+      "response": "**Relatório Operacional**\n\n- Número de rotas: 3\n- Número de paradas: 30 (10 por veículo)\n- Carga total: 30.529999999999998 (veículo v1) + 31.920000000000005 (veículo v2) + 19.890000000000004 (veículo v3) = 82.34 unidades\n- Distância total: 1.236965 (veículo v1) + 1.224442 (veículo v2) + 1.143959 (veículo v3) = 3.605366 unidades de coordenada\n\n**Comparação com o Baseline**\n\nNenhum baseline fornecido.",
+      "ratings": {
+        "factual_accuracy": 1,
+        "clarity": 1,
+        "usefulness": 1
+      },
+      "review_notes": "Total de 30 paradas e distância corretos; afirmou incorretamente 10 paradas por veículo (real: 10, 13 e 7), exibiu artefatos de ponto flutuante e não informou zero pontos sem rota."
+    },
+    {
+      "task": "ask",
+      "question": "Quais são as entregas críticas e em que ordem serão atendidas?",
+      "response": "As entregas críticas são as que possuem a prioridade \"critical\". Elas são:\n\n* dp23, dp27, dp15, dp26, dp30, dp14, dp5, dp21, dp17, dp20, dp18",
+      "ratings": {
+        "factual_accuracy": 0,
+        "clarity": 1,
+        "usefulness": 0
+      },
+      "review_notes": "Omitiu dp12 e dp4, incluiu quatro pontos regulares (dp21, dp17, dp20, dp18) e não indicou veículo nem ordem das paradas."
+    }
+  ],
+  "provider": "OllamaProvider",
+  "model": "llama3.1:latest",
+  "reference": {
+    "total_distance": 3.605366,
+    "total_load": 82.34,
+    "total_stops": 30,
+    "route_stop_ids": {
+      "v1": [
+        "dp23",
+        "dp27",
+        "dp15",
+        "dp28",
+        "dp10",
+        "dp8",
+        "dp21",
+        "dp17",
+        "dp20",
+        "dp18"
+      ],
+      "v2": [
+        "dp26",
+        "dp30",
+        "dp14",
+        "dp5",
+        "dp29",
+        "dp22",
+        "dp16",
+        "dp6",
+        "dp13",
+        "dp1",
+        "dp11",
+        "dp7",
+        "dp24"
+      ],
+      "v3": [
+        "dp12",
+        "dp4",
+        "dp3",
+        "dp19",
+        "dp25",
+        "dp2",
+        "dp9"
+      ]
+    },
+    "critical_stops": [
+      {
+        "vehicle_id": "v1",
+        "order": 1,
+        "id": "dp23"
+      },
+      {
+        "vehicle_id": "v1",
+        "order": 2,
+        "id": "dp27"
+      },
+      {
+        "vehicle_id": "v1",
+        "order": 3,
+        "id": "dp15"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 1,
+        "id": "dp26"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 2,
+        "id": "dp30"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 3,
+        "id": "dp14"
+      },
+      {
+        "vehicle_id": "v2",
+        "order": 4,
+        "id": "dp5"
+      },
+      {
+        "vehicle_id": "v3",
+        "order": 1,
+        "id": "dp12"
+      },
+      {
+        "vehicle_id": "v3",
+        "order": 2,
+        "id": "dp4"
+      }
+    ],
+    "unrouted_point_ids": []
+  },
+  "reviewer": "Codex: revisão técnica assistida por comparação de IDs, ordem e totais"
+}
