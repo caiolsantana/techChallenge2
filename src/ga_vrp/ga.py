@@ -34,6 +34,7 @@ from .split import split_into_routes
 class GAConfig:
     population_size: int = 100
     n_generations: int = 100
+    crossover_probability: float = 1.0
     mutation_probability: float = 0.3
     mutation_operator: str = "swap"  # "swap" (base_code default) or "inversion"
     priority_weight: float = fitness_module.DEFAULT_PRIORITY_WEIGHT
@@ -80,7 +81,11 @@ def run_ga(
         new_population = [population[0]]  # elitism: keep the best individual
         while len(new_population) < config.population_size:
             parent1, parent2 = roulette_wheel_selection(population, fitness_values, k=2)
-            child = order_crossover(parent1, parent2)
+            child = (
+                order_crossover(parent1, parent2)
+                if random.random() < config.crossover_probability
+                else list(parent1)
+            )
             child = mutate_fn(child, config.mutation_probability)
             new_population.append(child)
 

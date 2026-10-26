@@ -22,14 +22,14 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 
 | Status | Tarefa |
 |---|---|
-| A fazer | Fase 3.10 — Gráfico de convergência do GA (Matplotlib) |
-| A fazer | Fase 3.11 — Mapa interativo das rotas (Folium) |
-| A fazer | Fase 4.12 — Configurar provedor LLM (Groq + fallback Ollama) |
-| A fazer | Fase 4.13 — Prompt engineering (instruções, relatórios, Q&A) |
-| A fazer | Fase 4.14 — Avaliação da qualidade das respostas da LLM |
-| A fazer | Fase 5.15 — Rodar 3+ experimentos do GA com configs diferentes |
-| A fazer | Fase 5.16 — Comparar com baseline (nearest-neighbor/guloso) |
-| A fazer | Fase 5.17 — Testes automatizados (pytest) |
+| Concluído | Fase 3.10 — Gráfico de convergência do GA (Matplotlib) |
+| Concluído | Fase 3.11 — Mapa interativo das rotas (Folium) |
+| Concluído | Fase 4.12 — Provedor LLM (Groq + fallback Ollama); falta validar chamada real com credencial/servidor |
+| Concluído | Fase 4.13 — Prompts para instruções, relatórios e Q&A |
+| Em andamento | Fase 4.14 — Rubrica e coleta implementadas; avaliação de respostas reais depende de Groq/Ollama |
+| Concluído | Fase 5.15 — 3 configurações × 3 sementes, resultados em `results/experiments.*` |
+| Concluído | Fase 5.16 — Baseline nearest-neighbor e comparação de distância/fitness |
+| Concluído | Fase 5.17 — Testes automatizados (pytest) |
 
 ## Bloco 3 — @gabrielle19 (Fases 6, 7 e 8)
 
@@ -46,6 +46,12 @@ Legenda de status: `A fazer` · `Em andamento` · `Concluído` · `Bloqueado`
 ## Log de atualizações
 
 <!-- Adicione uma linha por atualização relevante, mais recente no topo. -->
+- 2026-10-25 — @andersonmares — Fases 3 e 5 implementadas: visualizações em `src/visualization/`,
+  nove execuções reproduzíveis e baseline em `src/experiments/`, testes em `tests/`. Fase 4:
+  provedores e prompts implementados, com protocolo de avaliação documentado; execução de
+  respostas reais pendente de credencial Groq ou servidor Ollama. Detalhes em
+  [docs/fase4-avaliacao-llm.md](docs/fase4-avaliacao-llm.md) e
+  [docs/fase5-experimentos.md](docs/fase5-experimentos.md).
 - 2026-10-19 — @caiolsantana — Fase 2 concluída: gerador de dados sintéticos em `src/data/scenario.py`
   (`ScenarioConfig`, `generate_scenario`, `load_config`/`save_scenario`/`load_scenario`, CLI via
   `python -m src.data.scenario`). Cenário no formato/escala de São Paulo (bounding box de lat/lon,

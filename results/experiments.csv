@@ -1,0 +1,10 @@
+distance,fitness,routes,routed_points,unrouted_points,capacity_violations,autonomy_violations,all_points_accounted_for,experiment,seed,elapsed_seconds,first_fitness,last_fitness,generations,convergence_generation,distance_change_vs_baseline_percent,fitness_change_vs_baseline_percent
+4.852595,54.35809,3,30,0,0,0,True,small_swap,42,0.1387,125.434939,54.35809,50,50,109.87,-79.46
+4.337637,51.482159,3,30,0,0,0,True,small_swap,73,0.1416,113.379231,51.482159,50,48,87.6,-80.55
+4.697254,49.917034,3,30,0,0,0,True,small_swap,101,0.1422,126.830616,49.917034,50,49,103.15,-81.14
+4.260797,49.307417,3,30,0,0,0,True,medium_swap,42,0.4396,125.434939,49.307417,80,74,84.27,-81.37
+4.722666,52.287601,3,30,0,0,0,True,medium_swap,73,0.4332,113.379231,52.287601,80,76,104.25,-80.25
+4.114937,54.683119,3,30,0,0,0,True,medium_swap,101,0.4271,126.830616,54.683119,80,77,77.97,-79.34
+5.119235,57.9872,3,30,0,0,0,True,large_inversion,42,0.8762,125.434939,57.9872,100,99,121.4,-78.09
+4.452902,49.755933,3,30,0,0,0,True,large_inversion,73,0.8689,113.379231,49.755933,100,97,92.58,-81.2
+5.123386,68.410099,3,30,0,0,0,True,large_inversion,101,0.8948,120.177662,68.410099,100,94,121.58,-74.15
