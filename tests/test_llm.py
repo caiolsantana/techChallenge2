@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from src.ga_vrp.models import DeliveryPoint, Priority, Route, Solution, Vehicle
+from src.ga_vrp.geo import haversine_km, route_km
+from src.ga_vrp.models import DeliveryPoint, Depot, Priority, Route, Solution, Vehicle
 from src.llm.evaluation import collect_responses
 from src.llm.prompts import build_messages, solution_context
 from src.llm.providers import FallbackProvider
@@ -28,6 +29,17 @@ class LLMTests(unittest.TestCase):
         self.assertIn("dp1", messages[1]["content"])
         self.assertIn("unidades de coordenada", messages[0]["content"])
         self.assertIn('"priority": "critical"', messages[1]["content"])
+
+    def test_haversine_matches_one_degree_of_latitude(self) -> None:
+        self.assertAlmostEqual(haversine_km(Depot(-23.0, -46.6), Depot(-24.0, -46.6)), 111.19, places=2)
+
+    def test_context_adds_straight_line_km_when_depot_is_known(self) -> None:
+        depot = Depot(-23.55, -46.63)
+        expected_km = round(route_km(depot, self.solution.routes[0].points), 1)
+        context = solution_context(self.solution, detail="summary", depot=depot)
+        self.assertIn(f'"total_distance_km": {expected_km}', context)
+        self.assertIn(f'"distance_km": {expected_km}', context)
+        self.assertNotIn("distance_km", solution_context(self.solution, detail="summary"))
 
     def test_question_is_required(self) -> None:
         with self.assertRaises(ValueError):

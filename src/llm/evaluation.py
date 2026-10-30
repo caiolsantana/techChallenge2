@@ -6,7 +6,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from ..ga_vrp.models import Solution
+from ..ga_vrp.geo import route_km
+from ..ga_vrp.models import Depot, Solution
 from .prompts import build_messages
 from .providers import ChatProvider
 
@@ -17,9 +18,14 @@ CASES = (
 )
 
 
-def solution_reference(solution: Solution) -> dict:
+def solution_reference(solution: Solution, depot: Depot | None = None) -> dict:
     return {
         "total_distance": round(solution.total_distance, 6),
+        **(
+            {"total_distance_km": round(sum(route_km(depot, route.points) for route in solution.routes), 1)}
+            if depot
+            else {}
+        ),
         "total_load": round(sum(route.load for route in solution.routes), 2),
         "total_stops": sum(len(route.points) for route in solution.routes),
         "route_stop_ids": {
@@ -35,10 +41,10 @@ def solution_reference(solution: Solution) -> dict:
     }
 
 
-def collect_responses(solution: Solution, provider: ChatProvider) -> dict:
+def collect_responses(solution: Solution, provider: ChatProvider, depot: Depot | None = None) -> dict:
     cases = []
     for task, question in CASES:
-        messages = build_messages(task, solution, question)
+        messages = build_messages(task, solution, question, depot=depot)
         cases.append(
             {
                 "task": task,
@@ -52,7 +58,7 @@ def collect_responses(solution: Solution, provider: ChatProvider) -> dict:
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "provider": type(provider).__name__,
         "model": getattr(provider, "model", None),
-        "reference": solution_reference(solution),
+        "reference": solution_reference(solution, depot),
         "cases": cases,
     }
 

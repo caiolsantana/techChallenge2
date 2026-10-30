@@ -26,7 +26,7 @@ def main() -> None:
     random.seed(args.seed)
     scenario = load_scenario(args.scenario)
     result = run_ga(scenario.delivery_points, scenario.vehicles, scenario.depot, GAConfig())
-    messages = build_messages(args.task, result.best_solution, args.question)
+    messages = build_messages(args.task, result.best_solution, args.question, depot=scenario.depot)
     print(make_provider(args.provider).complete(messages))
 
 

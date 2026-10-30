@@ -17,7 +17,8 @@ class ChatProvider(Protocol):
 @dataclass
 class GroqProvider:
     api_key: str
-    model: str = "llama-3.3-70b-versatile"
+    # Groq retired its Llama chat models; the project's Llama 3.1 runs through Ollama instead.
+    model: str = "openai/gpt-oss-120b"
 
     def complete(self, messages: list[dict[str, str]]) -> str:
         from groq import Groq
@@ -35,6 +36,8 @@ class GroqProvider:
 class OllamaProvider:
     model: str = "llama3.1"
     base_url: str = "http://localhost:11434"
+    # CPU-only machines need ~3 min for the report task with llama3.1 8B.
+    timeout: float = 600.0
 
     def complete(self, messages: list[dict[str, str]]) -> str:
         payload = json.dumps({"model": self.model, "messages": messages, "stream": False}).encode()
@@ -45,9 +48,9 @@ class OllamaProvider:
             method="POST",
         )
         try:
-            with urlopen(request, timeout=90) as response:
+            with urlopen(request, timeout=self.timeout) as response:
                 content = json.load(response)["message"]["content"]
-        except (URLError, KeyError, ValueError) as exc:
+        except (URLError, TimeoutError, KeyError, ValueError) as exc:
             raise RuntimeError(f"Ollama request failed: {exc}") from exc
         if not content:
             raise RuntimeError("Ollama returned an empty response")
@@ -78,6 +81,7 @@ def make_provider(choice: str = "auto") -> ChatProvider:
     ollama = OllamaProvider(
         model=os.getenv("OLLAMA_MODEL", "llama3.1"),
         base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+        timeout=float(os.getenv("OLLAMA_TIMEOUT", "600")),
     )
     if choice == "ollama":
         return ollama
@@ -86,5 +90,5 @@ def make_provider(choice: str = "auto") -> ChatProvider:
         raise RuntimeError("GROQ_API_KEY is required for --provider groq")
     if not api_key:
         return ollama
-    groq = GroqProvider(api_key=api_key, model=os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"))
+    groq = GroqProvider(api_key=api_key, model=os.getenv("GROQ_MODEL", "openai/gpt-oss-120b"))
     return groq if choice == "groq" else FallbackProvider(groq, ollama)

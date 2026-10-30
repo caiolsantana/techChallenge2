@@ -70,7 +70,6 @@ def split_into_routes(
             current_load = candidate_load
             continue
 
-        # Doesn't fit: close this route and move to the next vehicle in the fleet.
         close_current_route()
         current_vehicle = next(vehicle_iter, None)
         current_points = []

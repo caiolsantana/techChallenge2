@@ -4,18 +4,25 @@ from __future__ import annotations
 
 import json
 
-from ..ga_vrp.models import Solution
+from ..ga_vrp.geo import route_km
+from ..ga_vrp.models import Depot, Solution
 
 SYSTEM_PROMPT = (
     "Você é um assistente de logística hospitalar. Responda em português usando somente os dados "
-    "fornecidos. Não invente endereço, horário, tempo de viagem, economia, quilômetros ou estado "
-    "do trânsito. As distâncias estão em unidades de coordenada, não em quilômetros. Se faltarem "
-    "dados para uma resposta, diga claramente o que falta. Não omita entregas não roteadas."
+    "fornecidos. Não invente endereço, horário, tempo de viagem, economia ou estado do trânsito. "
+    "As distâncias distance e total_distance estão em unidades de coordenada. Quando houver os "
+    "campos distance_km e total_distance_km, informe a distância nas duas unidades, deixando claro "
+    "que os quilômetros são aproximados, em linha reta, e não o percurso pelas ruas. Nunca "
+    "converta distâncias para quilômetros por conta própria. Se faltarem dados para uma resposta, "
+    "diga claramente o que falta. Não omita entregas não roteadas."
 )
 
 
 def solution_context(
-    solution: Solution, baseline_distance: float | None = None, detail: str = "full"
+    solution: Solution,
+    baseline_distance: float | None = None,
+    detail: str = "full",
+    depot: Depot | None = None,
 ) -> str:
     critical_stops = [
         {"vehicle_id": route.vehicle.id, "order": index, "id": point.id}
@@ -26,9 +33,19 @@ def solution_context(
     if detail == "critical":
         return json.dumps({"critical_stops": critical_stops}, ensure_ascii=False, indent=2)
 
+    # km need the depot because every route starts and ends there.
+    km = {route.vehicle.id: route_km(depot, route.points) for route in solution.routes} if depot else {}
     data = {
         "distance_unit": "unidades de coordenada (distância euclidiana em lat/lon)",
         "total_distance": round(solution.total_distance, 6),
+        **(
+            {
+                "distance_km_unit": "km aproximados em linha reta (Haversine), não o percurso pelas ruas",
+                "total_distance_km": round(sum(km.values()), 1),
+            }
+            if depot
+            else {}
+        ),
         "route_count": len(solution.routes),
         "total_stops": sum(len(route.points) for route in solution.routes),
         "total_load": round(sum(route.load for route in solution.routes), 2),
@@ -40,6 +57,7 @@ def solution_context(
                 "load": round(route.load, 2),
                 "max_range": route.vehicle.max_range,
                 "distance": round(route.distance, 6),
+                **({"distance_km": round(km[route.vehicle.id], 1)} if depot else {}),
                 "stop_count": len(route.points),
                 **(
                     {
@@ -73,18 +91,21 @@ def build_messages(
     solution: Solution,
     question: str | None = None,
     baseline_distance: float | None = None,
+    depot: Depot | None = None,
 ) -> list[dict[str, str]]:
     if task == "instructions":
         instruction = (
             "Gere instruções de entrega por veículo, na ordem exata das paradas. "
             "Destaque as entregas críticas e os pontos sem rota. "
-            "Copie os IDs, demandas e prioridades sem alterar os dados."
+            "Copie os IDs, demandas e prioridades sem alterar os dados. "
+            "Informe a distância de cada rota usando distance e distance_km, se existir."
         )
         detail = "full"
     elif task == "report":
         instruction = (
             "Gere um relatório operacional usando os campos route_count, total_stops, "
-            "total_load, total_distance e o stop_count de cada veículo exatamente como fornecidos. "
+            "total_load, total_distance e o stop_count de cada veículo exatamente como fornecidos; "
+            "se existirem, use também total_distance_km e o distance_km de cada veículo. "
             "Não estime uma distribuição igual de paradas entre veículos. "
             "Compare com o baseline apenas se ele estiver presente e houver cobertura equivalente. "
             "Informe explicitamente a quantidade de pontos não roteados. "
@@ -104,7 +125,8 @@ def build_messages(
             )
     else:
         raise ValueError(f"Unknown task: {task}")
+    context = solution_context(solution, baseline_distance, detail, depot)
     return [
         {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user", "content": f"Dados reais da solução:\n{solution_context(solution, baseline_distance, detail)}\n\n{instruction}"},
+        {"role": "user", "content": f"Dados reais da solução:\n{context}\n\n{instruction}"},
     ]

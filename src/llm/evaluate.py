@@ -25,7 +25,7 @@ def main() -> None:
     random.seed(args.seed)
     scenario = load_scenario(args.scenario)
     result = run_ga(scenario.delivery_points, scenario.vehicles, scenario.depot, GAConfig())
-    record = collect_responses(result.best_solution, make_provider(args.provider))
+    record = collect_responses(result.best_solution, make_provider(args.provider), scenario.depot)
     print(save_evaluation(record, args.output))
 
 

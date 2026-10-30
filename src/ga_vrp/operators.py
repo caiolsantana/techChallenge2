@@ -18,18 +18,14 @@ from .models import DeliveryPoint
 def generate_random_population(
     delivery_points: list[DeliveryPoint], population_size: int
 ) -> list[list[DeliveryPoint]]:
-    """Each individual is a random permutation of all delivery points (a random giant tour).
-    Same approach as base_code's `generate_random_population`.
-    """
+   
     return [random.sample(delivery_points, len(delivery_points)) for _ in range(population_size)]
 
 
 def order_crossover(
     parent1: list[DeliveryPoint], parent2: list[DeliveryPoint]
 ) -> list[DeliveryPoint]:
-    """Classic OX crossover: copy a random slice from parent1, fill the rest, in order,
-    with whatever is missing from parent2. Same algorithm as base_code's `order_crossover`.
-    """
+   
     length = len(parent1)
     start_index = random.randint(0, length - 1)
     end_index = random.randint(start_index + 1, length)
@@ -48,9 +44,7 @@ def order_crossover(
 def swap_mutate(
     individual: list[DeliveryPoint], mutation_probability: float
 ) -> list[DeliveryPoint]:
-    """Swap two adjacent points with the given probability. Same algorithm as base_code's
-    `mutate` — kept as the default mutation for parity with the original GA behaviour.
-    """
+   
     mutated = list(individual)
 
     if random.random() < mutation_probability and len(mutated) >= 2:
@@ -63,10 +57,7 @@ def swap_mutate(
 def inversion_mutate(
     individual: list[DeliveryPoint], mutation_probability: float
 ) -> list[DeliveryPoint]:
-    """Reverse a random segment of the tour. This is the improvement the base_code TODO
-    asked for ("invert pieces of code instead of just swapping two"); kept as an
-    alternative mutation operator, configurable via `GAConfig.mutation_operator`.
-    """
+   
     mutated = list(individual)
 
     if random.random() < mutation_probability and len(mutated) >= 2:
@@ -79,9 +70,6 @@ def inversion_mutate(
 def roulette_wheel_selection(
     population: list[list[DeliveryPoint]], fitness_values: list[float], k: int
 ) -> list[list[DeliveryPoint]]:
-    """Fitness-proportionate selection using 1/fitness as weight (lower fitness = better,
-    since fitness is a distance+penalty score to minimize). Same weighting scheme used in
-    base_code's `tsp.py` main loop (`probability = 1 / np.array(population_fitness)`).
-    """
+    
     weights = [1.0 / max(value, 1e-9) for value in fitness_values]
     return random.choices(population, weights=weights, k=k)

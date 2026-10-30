@@ -49,5 +49,4 @@ Este é um teste de um cenário com uma execução por versão do prompt. O resu
 o modelo pode seguir os dados nesse caso, mas a primeira rodada mostrou que também pode
 confundir fatos. As coordenadas são sintéticas; as instruções não equivalem a navegação real.
 
-Referências das interfaces usadas: [Groq Chat Completions](https://console.groq.com/docs/api-reference)
-e [Ollama Chat API](https://docs.ollama.com/api/chat).
+Referências das interfaces usadas: [Ollama Chat API](https://docs.ollama.com/api/chat).
